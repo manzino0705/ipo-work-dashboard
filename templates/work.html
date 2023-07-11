@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title> My Work Station </title>
+
+    <!-- Bootstrap -->
+    <link href="static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="static/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="static/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="static/build/css/custom.min.css" rel="stylesheet">
+
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- fullcalendar CDN -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+    <!-- fullcalendar 언어 CDN -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+
+  </head>
+
+  <body class="nav-sm">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="/" class="site_title"><i class="fa fa-thumbs-o-up"></i></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="/"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                  <li><a href="/work"><i class="fa fa-edit"></i> Work <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                  <li><a href="/news"><i class="fa fa-table"></i> News <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+              <!-- <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div> -->
+              <nav class="nav navbar-nav">
+              <ul class=" navbar-right">
+                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                  <a href="javascript:;" class="user-profile" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src="/static/images/profile.png" alt="">MinJi Kim
+                  </a>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+          <!-- 캘린더 -->
+          <br>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+              <div class="x_panel tile" style="height:830px">
+                <div class="row x_title">
+                  
+                  <div class="col-md-6">
+                    <h3>Work Schedule<small>  </small></h3>
+                  </div>
+                  
+                </div>
+
+                <div class="col-md-9 col-sm-9 ">
+                  <div id='calendar-container' class="demo-placeholder">
+                    <div id='calendar'></div>
+                  </div>
+                </div>
+
+                <!-- 옆에 나와 있는 것 .. -->
+                <div class="col-md-3 col-sm-3  bg-white">
+                  <div class="x_title">
+                    <h2> IPO List </h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 x-panel">
+                    <div class="x_content">
+                      <div class="dashboard-widget-content">
+
+                        <ul class="list-unstyled timeline widget">
+                          <li>
+                            <div class="block">
+                              <div class="block_content">
+                                <h2 class="title"> 
+                                                  <a> {{ IPO_data[0].종목명 }} </a>
+                                              </h2>
+                                <div class="byline">
+                                  <span>주간사 : </span> <a> {{IPO_data[0].주간사 }}</a>
+                                </div>
+                                <p class="excerpt">
+                                
+                                  희망공모가 : {{ IPO_data[0].희망공모가 }} <br>
+                                  청약시작일 :  {{ IPO_data[0].청약일 }}<br>
+                                  환불예정일 : {{ IPO_data[0].환불일 }}<br>
+
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="block">
+                              <div class="block_content">
+                                <h2 class="title"> 
+                                                  <a> {{ IPO_data[1].종목명 }} </a>
+                                              </h2>
+                                <div class="byline">
+                                  <span>주간사 : </span> <a> {{IPO_data[1].주간사 }}</a>
+                                </div>
+                                <p class="excerpt">
+                                  
+                                  희망공모가 : {{ IPO_data[1].희망공모가 }} <br>
+                                  청약시작일 :  {{ IPO_data[1].청약일 }}<br>
+                                  환불예정일 : {{ IPO_data[1].환불일 }}<br>
+                                
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+ 
+                          <li>
+                            <div class="block">
+                              <div class="block_content">
+                                <h2 class="title"> 
+                                                  <a> {{ IPO_data[2].종목명 }} </a>
+                                              </h2>
+                                <div class="byline">
+                                  <span>주간사 : </span> <a> {{IPO_data[2].주간사 }}</a>
+                                </div>
+                                <p class="excerpt">
+         
+                                  희망공모가 : {{ IPO_data[2].희망공모가 }} <br>
+                                  청약시작일 :  {{ IPO_data[2].청약일 }}<br>
+                                  환불예정일 : {{ IPO_data[2].환불일 }}<br>
+                                  
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+
+                          <li>
+                            <div class="block">
+                              <div class="block_content">
+                                <h2 class="title"> 
+                                                  <a> {{ IPO_data[3].종목명 }} </a>
+                                              </h2>
+                                <div class="byline">
+                                  <span>주간사 : </span> <a> {{IPO_data[3].주간사 }}</a>
+                                </div>
+                                <p class="excerpt">
+                                  
+                                  희망공모가 : {{ IPO_data[3].희망공모가 }} <br>
+                                  청약시작일 :  {{ IPO_data[3].청약일 }}<br>
+                                  환불예정일 : {{ IPO_data[3].환불일 }}<br>
+         
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+          </div>
+        
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            한국투자증권 X 스파르타코딩클럽 핵심인재양성과정 코딩부트캠프 3기 / 113237 김민지 
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="static/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="static/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="static/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="static/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="static/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="static/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="static/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="static/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="static/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="static/vendors/Flot/jquery.flot.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="static/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="static/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="static/vendors/moment/min/moment.min.js"></script>
+    <script src="static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="static/build/js/custom.min.js"></script>
+
+    <!-- calendar -->
+    <script>
+      (function(){
+        $(function(){
+          // calendar element 취득
+          var calendarEl = $('#calendar')[0];
+          // full-calendar 생성하기
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: '700px', // calendar 높이 설정
+            expandRows: true, // 화면에 맞게 높이 재설정
+            slotMinTime: '08:00', // Day 캘린더에서 시작 시간
+            slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
+            // 해더에 표시할 툴바
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
+            // initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+            navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
+            editable: true, // 수정 가능 
+            selectable: true, // 달력 일자 드래그 설정가능
+            nowIndicator: true, // 현재 시간 마크
+            dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
+            locale: 'ko', // 한국어 설정
+            eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
+              console.log(obj);
+            },
+            eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
+              console.log(obj);
+            },
+            eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
+              console.log(obj);
+            },
+            select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+              var title = prompt('Event Title:');
+              if (title) {
+                calendar.addEvent({
+                  title: title,
+                  start: arg.start,
+                  end: arg.end,
+                  allDay: arg.allDay
+                })
+              }
+              calendar.unselect()
+            },
+            // 이벤트 
+            events: [
+            {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-06-08T09:30:00'
+          },
+            {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-06-15T09:30:00'
+          },
+
+            {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-06-22T09:30:00'
+          },
+          {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-06-29T09:30:00'
+          },
+          {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-07-06T09:30:00'
+          },
+          {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-07-13T09:30:00'
+          },
+          {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-07-20T09:30:00'
+          },
+          {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-07-27T09:30:00'
+          },
+          {
+            title: 'DX 수료 🥰',
+            start: '2023-06-30',
+            color: '#FFDEAD',
+            textColor: 'black'
+          },
+          {
+            title: 'DX 시작 😎',
+            start: '2023-06-12',
+            color: '#FFDEAD',
+            textColor: 'black'
+          },
+              {
+                title: '{{IPO_data[0].종목명}} 청약기간',
+                start: '{{IPO_data[0].청약일}}',
+                end: '{{IPO_data[0].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[0].종목명}} 배정일',
+                start: '{{IPO_data[0].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[0].종목명}} 환불일',
+                start: '{{IPO_data[0].환불일}}',
+                color: '#4682B4'
+              }
+            , 
+            {
+                title: '{{IPO_data[1].종목명}} 청약기간',
+                start: '{{IPO_data[1].청약일}}',
+                end: '{{IPO_data[1].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[1].종목명}} 배정일',
+                start: '{{IPO_data[1].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[1].종목명}} 환불일',
+                start: '{{IPO_data[1].환불일}}',
+                color: '#4682B4'
+              }
+            , 
+              
+            {
+                title: '{{IPO_data[2].종목명}} 청약기간',
+                start: '{{IPO_data[2].청약일}}',
+                end: '{{IPO_data[2].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[2].종목명}} 배정일',
+                start: '{{IPO_data[2].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[2].종목명}} 환불일',
+                start: '{{IPO_data[2].환불일}}',
+                color: '#4682B4'
+              }
+            , 
+            {
+                title: '{{IPO_data[3].종목명}} 청약기간',
+                start: '{{IPO_data[3].청약일}}',
+                end: '{{IPO_data[3].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[3].종목명}} 배정일',
+                start: '{{IPO_data[3].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[3].종목명}} 환불일',
+                start: '{{IPO_data[3].환불일}}',
+                color: '#4682B4'
+              }
+            ]
+          });
+          // 캘린더 랜더링
+          calendar.render();
+        });
+      })();
+    </script>
+	
+  </body>
+</html>

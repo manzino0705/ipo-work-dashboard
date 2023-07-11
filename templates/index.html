@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title> My Work Station </title>
+
+    <!-- Bootstrap -->
+    <link href="static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="static/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="static/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="static/build/css/custom.min.css" rel="stylesheet">
+
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- fullcalendar CDN -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+    <!-- fullcalendar 언어 CDN -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+
+  </head>
+
+  <body class="nav-sm">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="/" class="site_title"><i class="fa fa-thumbs-o-up"></i></a>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="/"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                  <li><a href="/work"><i class="fa fa-edit"></i> Work <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                  <li><a href="/news"><i class="fa fa-table"></i> News <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+              <nav class="nav navbar-nav">
+              <ul class=" navbar-right">
+                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                  <a href="javascript:;" class="user-profile" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src="/static/images/profile.png" alt="">113237 김민지
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row" style="display: inline-block;" >
+          <div class="tile_count" style=" width: 1250px">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-bar-chart"></i> KOSPI </span>
+              <div class="count"> {{k_data[0][0][:-1]}} </div>
+              <span class="count_bottom"><i class="{{k_data[0][3]}}"><i class="{{k_data[0][4]}}"></i> {{k_data[0][2]}} </i>From {{k_data[0][-1]}} </span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-bar-chart"></i> KOSDAQ </span>
+              <div class="count"> {{k_data[1][0]}} </div>
+              <span class="count_bottom"><i class="{{k_data[1][3]}}"><i class="{{k_data[1][4]}}"></i> {{k_data[1][2]}} </i>From {{k_data[1][-1]}} </span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-usd"></i> 미국USD(원) </span>
+              <div class="count">{{e_data[0][0][:-1]}} </div>
+              <span class="count_bottom"><i class="{{e_data[0][2]}}"><i class="{{e_data[0][3]}}"></i>{{e_data[0][1]}}% </i>KST {{e_data[-1]}} </span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-jpy"></i> 일본JPY(100엔/원) </span>
+              <div class="count">{{e_data[1][0]}} </div>
+              <span class="count_bottom"><i class="{{e_data[1][2]}}"><i class="{{e_data[1][3]}}"></i>{{e_data[1][1]}}% </i>KST {{e_data[-1]}} </span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-line-chart"></i> WTI(달러) </span>
+              <div class="count">{{e_data[2][0]}} </div>
+              <span class="count_bottom"><i class="{{e_data[2][2]}}"><i class="{{e_data[2][3]}}"></i>{{e_data[2][1]}}% </i> KST {{e_data[-1]}} </span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-fire"></i> 휘발유(원) </span>
+              <div class="count">{{e_data[3][0]}} </div>
+              <span class="count_bottom"><i class="{{e_data[3][2]}}"><i class="{{e_data[3][3]}}"></i>{{e_data[3][1]}}% </i> KST {{e_data[-1]}} </span>
+            </div>
+          </div>
+        </div>
+          <!-- /top tiles -->
+
+          <div class="row">
+            <div class="col-md-4 col-sm-4 ">
+              <!-- 날씨 -->
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>This Week's Weather</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="temperature"><b>{{w_data[-1][0]}}</b>, {{w_data[-1][-1]}}
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="weather-icon">
+                        <canvas height="84" width="84" id="icon0"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="weather-text">
+                        <h2>서울특별시 영등포구</h2>
+                        <div class="weather-text pull-right">
+                          <h3 class="degrees">{{w_data[-1][2]}}</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="clearfix"></div>
+
+                  <div class="row weather-days">
+
+                    {% for data in w_data[:6] %}
+  
+                      <div class="col-sm-2">
+                        <div class="daily-weather">
+                          <h2 class="day">{{data[0]}}</h2>
+                          <h4 class="degrees">{{data[2]}}/{{data[3]}}</h4>
+                          <canvas id="{{data[-1]}}" width="32" height="32"></canvas>
+                        </div>
+                      </div>
+
+                    {% endfor %}
+
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 분할 및 합병 일정  -->
+            <div class="col-md-4 col-sm-4">
+               <div class="x_panel tile fixed_height_320"> 
+                <div class="x_title">
+                  <h2>Mergers&Spin-Offs's News! </h2>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  {% for data in m[:4] %}
+
+                  <article class="media event">
+                    <a class="pull-left date">
+                      <p class="month">{{data[0]}}</p>
+                      <p class="day">{{data[1]}}</p>
+                    </a>
+                    <div class="media-body">
+                      <a class="title" href="#"> {{data[2]}} </a>
+                      <p>{{data[3]}}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </div>
+                  </article>
+
+                  {% endfor %}
+
+                </div>
+              </div> 
+            </div>
+
+            <!-- To Do list -->
+            <div class="col-md-4 col-sm-4 ">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Everyday To Do List <small></small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div class="">
+                    <ul class="to_do">
+                      <!-- my to-do list 작성 -->
+                      <li>
+                        <p>
+                          <input type="checkbox" class="flat" >  7월 공모주 일정 및 프로세스 확인 </p>
+                      </li>
+                      <li>
+                        <p>
+                          <input type="checkbox" class="flat">  최신 JAVA Eclipse 소스 파일 동기화 작업 수행 </p>
+                      </li>
+                      <li>
+                        <p>
+                          <input type="checkbox" class="flat"> 팀 주간회의 자료 작성  </p>
+                      </li>
+                      <li>
+                        <p>
+                          <input type="checkbox" class="flat"> 금감원 전산원장 요청 작업 수행 </p>
+                      </li>
+                      <li>
+                        <p>
+                          <input type="checkbox" class="flat">  공모주 청약 관련 TR 모니터링 </p>
+                      </li>
+                      <li>
+                        <p>
+                          <input type="checkbox" class="flat"> 외주 프로젝트 금일 진행 상황 확인 </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <!-- 캘린더 -->
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+              <div class="x_panel tile" style="height:830px">
+                <div class="row x_title">
+                  
+                  <div class="col-md-6">
+                    <h3>Work Schedule<small>  </small></h3>
+                  </div>
+                  
+                </div>
+
+                <div class="col-md-9 col-sm-9 ">
+                  <div id='calendar-container' class="demo-placeholder">
+                    <div id='calendar'></div>
+                  </div>
+                </div>
+
+                <!-- IPO 일정 크롤링 -->
+                <div class="col-md-3 col-sm-3  bg-white">
+                  <div class="x_title">
+                    <h2> IPO List </h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 x-panel">
+                    <div class="x_content">
+                      <div class="dashboard-widget-content">
+
+                        <ul class="list-unstyled timeline widget">
+
+                          {% for data in IPO_data %} 
+
+                          <li>
+                            <div class="block">
+                              <div class="block_content">
+                                <h2 class="title"> <a> {{ data.종목명 }} </a> </h2>
+                                <div class="byline">
+                                  <span>주간사 : </span> <a> {{data.주간사 }}</a>
+                                </div>
+                                <p class="excerpt">
+                                  희망공모가 : {{ data.희망공모가 }} <br>
+                                  청약시작일 :  {{ data.청약일 }}<br>
+                                  환불예정일 : {{ data.환불일 }}<br>
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+
+                          {%endfor%}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IPO 뉴스 크롤링 -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Today's IPO News!</h2>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                  <div class="col-md-12 ">
+                      <ul class="messages">
+                        <!-- 5개 까지만 뉴스 표시  -->
+
+                        {% for data in news[:5] %} 
+
+                        <li>
+                          <img src="/static/images/news.png" class="avatar" alt="Avatar">
+                          <div class="message_date">
+                            <h3 class="date text-info">{{data[-1]}}</h3>
+                            <p class="month">{{data[-2]}}</p>
+                          </div>
+                          <div class="message_wrapper">
+                            <h4 class="heading">{{data[0]}} <small> / {{data[3]}}</small></h4> 
+                            <blockquote class="message">{{data[1]}}</blockquote>
+                            <br />
+                            <p class="url">
+                              <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                              <a href="{{data[2]}}"><i class="fa fa-newspaper-o"></i> 뉴스 자세히 보기 </a>
+                            </p>
+                          </div>
+                        </li>
+
+                        {%endfor%}
+
+                      </ul>
+
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+          </div>
+        
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            한국투자증권 X 스파르타코딩클럽 핵심인재양성과정 코딩부트캠프 3기 / 113237 김민지 
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="static/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="static/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="static/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="static/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="static/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="static/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="static/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="static/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="static/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="static/vendors/Flot/jquery.flot.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="static/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="static/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="static/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="static/vendors/moment/min/moment.min.js"></script>
+    <script src="static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="static/build/js/custom.min.js"></script>
+
+    <!-- calendar -->
+    <script>
+      (function(){
+        $(function(){
+          // calendar element 취득
+          var calendarEl = $('#calendar')[0];
+          // full-calendar 생성하기
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: '700px', // calendar 높이 설정
+            expandRows: true, // 화면에 맞게 높이 재설정
+            slotMinTime: '08:00', // Day 캘린더에서 시작 시간
+            slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
+            // 해더에 표시할 툴바
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            initialView: 'dayGridMonth', 
+            navLinks: true, 
+            editable: true, 
+            selectable: true, 
+            nowIndicator: true, 
+            dayMaxEvents: true, 
+            locale: 'ko', // 한국어 설정
+            eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
+              console.log(obj);
+            },
+            eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
+              console.log(obj);
+            },
+            eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
+              console.log(obj);
+            },
+            select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
+              var title = prompt('Event Title:');
+              if (title) {
+                calendar.addEvent({
+                  title: title,
+                  start: arg.start,
+                  end: arg.end,
+                  allDay: arg.allDay
+                })
+              }
+              calendar.unselect()
+            },
+            // 이벤트 정의하기 
+            events: [
+            {
+            groupId: 999,
+            title: '주간회의',
+            start: '2023-06-08T09:30:00'
+          },
+          {
+            title: 'DX 수료 🥰',
+            start: '2023-06-30',
+            color: '#FFDEAD',
+            textColor: 'black'
+          },
+          
+          {
+            title: 'DX 시작 😎',
+            start: '2023-06-12',
+            color: '#FFDEAD',
+            textColor: 'black'
+          },
+          // 최근 3개의 IPO 일정을 보여준다 
+              {
+                title: '{{IPO_data[0].종목명}} 청약기간',
+                start: '{{IPO_data[0].청약일}}',
+                end: '{{IPO_data[0].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[0].종목명}} 배정일',
+                start: '{{IPO_data[0].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[0].종목명}} 환불일',
+                start: '{{IPO_data[0].환불일}}',
+                color: '#4682B4'
+              }
+            , 
+            {
+                title: '{{IPO_data[1].종목명}} 청약기간',
+                start: '{{IPO_data[1].청약일}}',
+                end: '{{IPO_data[1].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[1].종목명}} 배정일',
+                start: '{{IPO_data[1].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[1].종목명}} 환불일',
+                start: '{{IPO_data[1].환불일}}',
+                color: '#4682B4'
+              }
+            , 
+              
+            {
+                title: '{{IPO_data[2].종목명}} 청약기간',
+                start: '{{IPO_data[2].청약일}}',
+                end: '{{IPO_data[2].청약마감일}}',
+                color: '#36BC9B',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[2].종목명}} 배정일',
+                start: '{{IPO_data[2].배정일}}',
+                color: '#77C6C8',
+                textColor: 'white'
+              },
+              {
+                title: '{{IPO_data[2].종목명}} 환불일',
+                start: '{{IPO_data[2].환불일}}',
+                color: '#4682B4'
+              }
+            ]
+          });
+          // 캘린더 랜더링
+          calendar.render();
+        });
+      })();
+    </script>
+
+
+    <!-- 날씨 그림 그리기 -->
+    <script>
+          let skycons0 = new Skycons({"color": "#73879C"});
+          let skycons1 = new Skycons({"color": "#3da4ab"});
+          let skycons2 = new Skycons({"color": "#3da4ab"});
+          let skycons3 = new Skycons({"color": "#3da4ab"});
+          let skycons4 = new Skycons({"color": "#3da4ab"});
+          let skycons5 = new Skycons({"color": "#3da4ab"});
+          let skycons6 = new Skycons({"color": "#3da4ab"});
+          
+          skycons0.add("icon0", {{w_data[-1][1]}});
+          skycons1.add("icon1", {{w_data[0][1]}});
+          skycons2.add("icon2", {{w_data[1][1]}});
+          skycons3.add("icon3", {{w_data[2][1]}});
+          skycons4.add("icon4", {{w_data[3][1]}});
+          skycons5.add("icon5", {{w_data[4][1]}});
+          skycons6.add("icon6", {{w_data[5][1]}});
+          
+          skycons0.play(); 
+          skycons1.play();
+          skycons2.play();
+          skycons3.play();
+          skycons4.play();
+          skycons5.play();
+          skycons6.play();
+    </script>  
+	
+  </body>
+</html>
