@@ -1,4 +1,4 @@
-# Ipo-Work-Dashboard
+# 내맘대로 만드는 Work DashBoard 
 
 ![sparta_dx](https://github.com/manzino0705/ipo-work-dashboard/assets/53653584/ba391868-fff8-4783-864f-f680c925b8ca)
 
@@ -31,5 +31,7 @@
 
 - 누구나 코딩을 통해 자신이 원하는 것을 구현하고 업무에 적용할 수 있는 많은 방법이 있다는 것을 알게 되었습니다.
 - 저는 공모주 청약 및 투자자 권리 관리 업무를 수행하고 있어 이와 관련된 내용으로 구성된 업무 대시 보드를 만들었지만, 본 프로젝트를 기반으로 누구나 이번 DX 코딩부트캠프에서 배운 내용들을 활용하여 자신만의 업무 대시보드를 만들어 볼 수 있을 것이라고 생각합니다.
+  
 
-![screencapture-192-168-100-38-8080-2023-06-29-11_26_07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ea1b80c3-45ad-4072-aaf1-04f7323a14de/screencapture-192-168-100-38-8080-2023-06-29-11_26_07.png)
+![screencapture-192-168-100-55-8080-2023-06-28-09_24_40](https://github.com/manzino0705/ipo-work-dashboard/assets/53653584/336fa454-220a-45ac-944b-3b9dc4a75c06)
+
